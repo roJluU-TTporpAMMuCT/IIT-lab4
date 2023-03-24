@@ -38,7 +38,7 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.12.13
-        tf_actions_subcommand: 'fmt -check'
+        tf_actions_subcommand: 'fmt'
         tf_actions_working_dir: './tf'
         tf_actions_comment: true
       env:
@@ -48,7 +48,7 @@ jobs:
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.12.13
-        tf_actions_subcommand: 'plan -input=false'
+        tf_actions_subcommand: 'plan'
         tf_actions_working_dir: './tf'
         tf_actions_comment: true
       env:
