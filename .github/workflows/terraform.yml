@@ -35,10 +35,22 @@ jobs:
       
 
     - name: Terraform Format
-      run: terraform fmt -check
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'fmt -check'
+        tf_actions_working_dir: './tf'
+        tf_actions_comment: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Terraform Plan
-      run: terraform plan -input=false
+      with:
+        tf_actions_version: 0.12.13
+        tf_actions_subcommand: 'plan -input=false'
+        tf_actions_working_dir: './tf'
+        tf_actions_comment: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
