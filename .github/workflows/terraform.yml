@@ -21,17 +21,16 @@ jobs:
         shell: bash
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+    - name: 'Checkout'
+      uses: actions/checkout@master
+    - name: 'Terraform Init'
+      uses: hashicorp/terraform-github-actions@master
       with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-        tf_actions_working_dir: './tf'
-
-    - name: Terraform Init
-      run: terraform init
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: '.'
+        tf_actions_comment: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 
     - name: Terraform Format
